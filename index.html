@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>College Form Helper</title>
-  </head>
-<body>
+<head>
+  <meta charset="UTF-8">
+  <title>College Form Helper</title>
+</head>
 
-  <h1>College Application Form</h1>
+<body>
+  <h1>College Application Helper</h1>
+  <p>This tool helps students review their application for completeness and strength.</p>
 
   <form id="collegeForm">
+
     <label>
-      Full name:
-      <input type="text" id="name" required>
+      Full Name:
+      <input type="text" id="name">
+      <span class="error" id="nameError"></span>
     </label>
     <br><br>
 
     <label>
-      GPA: 
-      <input type="number" id="gpa" step="0.01" min="0" max="4" required>
+      GPA (0.0 – 4.0):
+      <input type="number" id="gpa" step="0.01" min="0" max="4">
+      <span class="error" id="gpaError"></span>
     </label>
     <br><br>
 
     <label>
-      Major:
-      <input type="text" id="major" required>
+      Intended Major:
+      <input type="text" id="major">
+      <span class="error" id="majorError"></span>
     </label>
     <br><br>
 
     <label>
-      Activites:
-      <textarea id="activities" required></textarea>
+      Activities (one per line):
+      <textarea id="activities" rows="5"></textarea>
+      <span class="error" id="activitiesError"></span>
     </label>
     <br><br>
 
-    <button type="submit">Submit Application</button>
+    <button type="submit">Review Application</button>
   </form>
+
+  <hr>
 
   <div id="output"></div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
