@@ -11,9 +11,9 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
 
   let valid = true;
 
-  // --- Validation ---
+  // Validation
   if (name.length < 2) {
-    showError("nameError", "Please enter your full name.");
+    showError("nameError", "Enter your full name.");
     valid = false;
   }
 
@@ -23,7 +23,7 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
   }
 
   if (major.length < 2) {
-    showError("majorError", "Please enter a major.");
+    showError("majorError", "Enter your intended major.");
     valid = false;
   }
 
@@ -33,22 +33,22 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
     .filter(a => a.length > 0);
 
   if (activities.length === 0) {
-    showError("activitiesError", "Please list at least one activity.");
+    showError("activitiesError", "List at least one activity.");
     valid = false;
   }
 
   if (!valid) return;
 
-  // --- Feedback ---
+  // Feedback
   let gpaFeedback = gpa >= 3.8 ? "Strong academic standing."
     : gpa >= 3.2 ? "Competitive GPA."
-    : "Consider strengthening academic components.";
+    : "Consider improving your academic record.";
 
-  let activityFeedback = activities.length >= 5 ? "Excellent extracurricular involvement."
-    : activities.length >= 3 ? "Solid activity list."
+  let activityFeedback = activities.length >= 5 ? "Excellent extracurriculars."
+    : activities.length >= 3 ? "Good activity involvement."
     : "Consider adding more activities.";
 
-  // --- Section Completeness Tracking ---
+  // Section Completeness
   const completeness = {
     "Personal Info": name.length > 0,
     "Academic Info": !isNaN(gpa) && gpa >= 0,
@@ -65,7 +65,7 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
     completenessList += `<li>${section}: ${completeness[section] ? "✔ Complete" : "✖ Needs attention"}</li>`;
   }
 
-  // --- Output Summary ---
+  // Output Summary
   document.getElementById("output").innerHTML = `
     <h2>Application Summary</h2>
     <p><strong>Name:</strong> ${name}</p>
@@ -87,6 +87,10 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
 
 function showError(id, message) {
   document.getElementById(id).textContent = message;
+}
+
+function clearErrors() {
+  document.querySelectorAll(".error").forEach(e => e.textContent = "");
 }
 
 function clearErrors() {
