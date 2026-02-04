@@ -11,25 +11,22 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
 
   let valid = true;
 
-  // Name validation
+  // --- Validation ---
   if (name.length < 2) {
     showError("nameError", "Please enter your full name.");
     valid = false;
   }
 
-  // GPA validation
   if (isNaN(gpa) || gpa < 0 || gpa > 4) {
     showError("gpaError", "GPA must be between 0.0 and 4.0.");
     valid = false;
   }
 
-  // Major validation
   if (major.length < 2) {
     showError("majorError", "Please enter a major.");
     valid = false;
   }
 
-  // Activities validation
   const activities = activitiesText
     .split("\n")
     .map(a => a.trim())
@@ -42,25 +39,33 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
 
   if (!valid) return;
 
-  // GPA feedback
-  let gpaFeedback = "";
-  if (gpa >= 3.8) gpaFeedback = "Strong academic standing.";
-  else if (gpa >= 3.2) gpaFeedback = "Competitive GPA.";
-  else gpaFeedback = "Consider strengthening academic components.";
+  // --- Feedback ---
+  let gpaFeedback = gpa >= 3.8 ? "Strong academic standing."
+    : gpa >= 3.2 ? "Competitive GPA."
+    : "Consider strengthening academic components.";
 
-  // Activities feedback
-  let activityFeedback = "";
-  if (activities.length >= 5) activityFeedback = "Excellent extracurricular involvement.";
-  else if (activities.length >= 3) activityFeedback = "Solid activity list.";
-  else activityFeedback = "Consider adding more activities.";
+  let activityFeedback = activities.length >= 5 ? "Excellent extracurricular involvement."
+    : activities.length >= 3 ? "Solid activity list."
+    : "Consider adding more activities.";
 
-  // Readiness score
-  let score = 0;
-  score += gpa >= 3.5 ? 40 : 25;
-  score += activities.length >= 4 ? 40 : 25;
-  score += major.length > 0 ? 20 : 0;
+  // --- Section Completeness Tracking ---
+  const completeness = {
+    "Personal Info": name.length > 0,
+    "Academic Info": !isNaN(gpa) && gpa >= 0,
+    "Major": major.length > 0,
+    "Activities": activities.length > 0
+  };
 
-  // Output summary
+  const completedSections = Object.values(completeness).filter(v => v).length;
+  const totalSections = Object.keys(completeness).length;
+  const completenessPercent = Math.round((completedSections / totalSections) * 100);
+
+  let completenessList = "";
+  for (let section in completeness) {
+    completenessList += `<li>${section}: ${completeness[section] ? "✔ Complete" : "✖ Needs attention"}</li>`;
+  }
+
+  // --- Output Summary ---
   document.getElementById("output").innerHTML = `
     <h2>Application Summary</h2>
     <p><strong>Name:</strong> ${name}</p>
@@ -71,9 +76,12 @@ document.getElementById("collegeForm").addEventListener("submit", function (e) {
     <ul>
       ${activities.map(a => `<li>${a}</li>`).join("")}
     </ul>
-
-    <h3>Readiness Score: ${score}/100</h3>
     <p>${activityFeedback}</p>
+
+    <h3>Section Completeness: ${completenessPercent}%</h3>
+    <ul>
+      ${completenessList}
+    </ul>
   `;
 });
 
