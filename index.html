@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>College Form Helper</title>
+  </head>
+<body>
+
+  <h1>College Application Form</h1>
+
+  <form id="collegeForm">
+    <label>
+      Full name:
+      <input type="text" id="name" required>
+    </label>
+    <br><br>
+
+    <label>
+      GPA: 
+      <input type="number" id="gpa" step="0.01" min="0" max="4" required>
+    </label>
+    <br><br>
+
+    <label>
+      Major:
+      <input type="text" id="major" required>
+    </label>
+    <br><br>
+
+    <label>
+      Activites:
+      <textarea id="activities" required></textarea>
+    </label>
+    <br><br>
+
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
