@@ -1,24 +1,25 @@
 # College Application Helper
 
 ## What it does
-Helps students check their college applications. It validates inputs, gives feedback on GPA and activities, and shows which parts of the application are complete or need attention.
+Helps students track their college application progress live.  
+Shows which sections are complete and which need attention with a progress bar.
 
 ## Features
-- Validates all fields (name, GPA, major, activities)  
-- Gives GPA and activity feedback  
-- Tracks section completeness  
-- Shows completeness score  
+- Live progress tracking as you type  
+- Sections for: Name, GPA, Major, Activities, Awards/Accomplishments  
+- Visual progress bar showing completeness  
+- Section status with checkmarks for easy feedback  
 
 ## How to use
-1. Fill out the form with your info, GPA, major, and activities.  
-2. Click **Review Application**.  
-3. See your summary, feedback, and which sections need attention.  
+1. Open `index.html` in a browser.  
+2. Fill in your application info.  
+3. Watch the progress bar update and see which sections need attention.
 
 ## Tech
-- HTML  
-- JavaScript  
+- HTML for the form  
+- JavaScript for live updates and progress tracking  
 
 ## Future improvements
-- Save/load drafts  
-- Suggest missing activities  
-- Word-count or other checks
+- Give suggestions based on GPA or activities  
+- Save/load progress locally  
+- Add scoring for overall application strength
