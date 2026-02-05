@@ -6,54 +6,52 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     .error { color: red; font-size: 0.9em; }
+    input, textarea { width: 300px; padding: 5px; margin-top: 5px; }
     h1, h2, h3 { color: #333; }
-    input, textarea { width: 300px; padding: 5px; }
-    button { padding: 8px 12px; margin-top: 10px; }
+    .progress-container { width: 300px; background: #eee; height: 20px; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+    .progress-bar { height: 100%; background: #4caf50; width: 0%; transition: width 0.3s; }
+    label { display: block; margin-bottom: 15px; }
   </style>
 </head>
 <body>
 
-  <h1>College Application Helper</h1>
-  <p>Check your college application and see which sections need attention.</p>
+<h1>College Application Helper</h1>
+<p>Fill out your application and see your progress live.</p>
 
-  <form id="collegeForm">
+<form id="collegeForm">
+  <label>
+    Full Name:
+    <input type="text" id="name">
+  </label>
 
-    <label>
-      Full Name:
-      <input type="text" id="name">
-      <span class="error" id="nameError"></span>
-    </label>
-    <br><br>
+  <label>
+    GPA (0.0 – 4.0):
+    <input type="number" id="gpa" step="0.01" min="0" max="4">
+  </label>
 
-    <label>
-      GPA (0.0 – 4.0):
-      <input type="number" id="gpa" step="0.01" min="0" max="4">
-      <span class="error" id="gpaError"></span>
-    </label>
-    <br><br>
+  <label>
+    Intended Major:
+    <input type="text" id="major">
+  </label>
 
-    <label>
-      Intended Major:
-      <input type="text" id="major">
-      <span class="error" id="majorError"></span>
-    </label>
-    <br><br>
+  <label>
+    Activities (one per line):
+    <textarea id="activities" rows="4"></textarea>
+  </label>
 
-    <label>
-      Activities (one per line):
-      <textarea id="activities" rows="5"></textarea>
-      <span class="error" id="activitiesError"></span>
-    </label>
-    <br><br>
+  <label>
+    Accomplishments / Awards:
+    <textarea id="awards" rows="3"></textarea>
+  </label>
+</form>
 
-    <button type="submit">Review Application</button>
-  </form>
+<h3>Application Progress</h3>
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-  <hr>
+<div id="output"></div>
 
-  <div id="output"></div>
-
-  <!-- Script placed at the end of body to ensure it runs after HTML loads -->
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
